@@ -16,7 +16,7 @@ public class LocalizacaoApplication implements CommandLineRunner {
 
     @Transactional
     void salvarCidade(){
-        var cidade = new Cidade(1L,"Sao Paulo",12396372L);
+        var cidade = new Cidade(1L,"Sao Paulo",32396372L);
         cidadeRepository.save(cidade);
     }
 
