@@ -15,16 +15,9 @@ public class LocalizacaoApplication implements CommandLineRunner {
     private CidadeRepository cidadeRepository;
 
     @Transactional
-    void salvarCidade(){
-        var cidade = new Cidade(1L,"Sao Paulo",32396372L);
-        cidadeRepository.save(cidade);
-    }
-
-    @Transactional
     void listarCidades(){
         cidadeRepository.findAll().forEach(System.out::println);
     }
-
 
     public static void main(String[] args) {
         SpringApplication.run(LocalizacaoApplication.class, args);
@@ -32,7 +25,6 @@ public class LocalizacaoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       salvarCidade();
        listarCidades();
     }
 }
