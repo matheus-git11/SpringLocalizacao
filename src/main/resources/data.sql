@@ -13,4 +13,7 @@
     (4,'Salvador',70343209),
     (5,'Belo Horizonte',113421633),
     (6,'Porto Alegre',320312811),
-    (7,'Natal',533421633);
+    (7,'Natal',533421633),
+    (8,'Porto Velho',358312811),
+    (9,'Brasilia',668323811),
+    (10,'Fortaleza',432312811);
