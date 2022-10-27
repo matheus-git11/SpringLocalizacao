@@ -15,10 +15,11 @@ public class LocalizacaoApplication implements CommandLineRunner {
     private CidadeRepository cidadeRepository;
 
 
-    void listarCidadePorNome(){
+    void listarCidadePorNome(){ // teste dos query methods
         cidadeRepository.findByNomeStartingWith("Porto").forEach(System.out::println);
         cidadeRepository.findByNomeEndingWith("a").forEach(System.out::println);
         cidadeRepository.findByNomeContaining("a").forEach(System.out::println);
+        cidadeRepository.findByNomeLike("porto%").forEach(System.out::println); // o like funciona com base no %
     }
 
 
