@@ -15,11 +15,24 @@ public class LocalizacaoApplication implements CommandLineRunner {
     private CidadeRepository cidadeRepository;
 
 
-    void listarCidadePorNome(){ // teste dos query methods
+    void testeQueryMethodsCidadesPorNome(){ // teste dos query methods por nome (usando String)
         cidadeRepository.findByNomeStartingWith("Porto").forEach(System.out::println);
         cidadeRepository.findByNomeEndingWith("a").forEach(System.out::println);
         cidadeRepository.findByNomeContaining("a").forEach(System.out::println);
         cidadeRepository.findByNomeLike("porto%").forEach(System.out::println); // o like funciona com base no %
+    }
+
+    void testQueryMethodsCidadesPorHabitantes(){ // teste de query methods por Habitantes (Usando numero)
+        cidadeRepository.findByHabitantesLessThan(13940233L).forEach(System.out::println);
+        cidadeRepository.findByHabitantesLessThanEqual(13940233L).forEach(System.out::println);
+        cidadeRepository.findByHabitantesGreaterThan(533421633L).forEach(System.out::println);
+        cidadeRepository.findByHabitantesGreaterThanEqual(533421633L).forEach(System.out::println);
+    }
+
+    void testQueryMethodsCompostas(){
+        cidadeRepository
+                .findByHabitantesLessThanAndNomeLike(13940233L,"Re%")
+                .forEach(System.out::println);
     }
 
 
@@ -29,6 +42,8 @@ public class LocalizacaoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-      listarCidadePorNome();
+       //testeQueryMethodsCidadesPorNome();
+        //testQueryMethodsCidadesPorHabitantes();
+        testQueryMethodsCompostas();
     }
 }
