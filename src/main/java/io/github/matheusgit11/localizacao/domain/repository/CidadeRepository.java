@@ -1,6 +1,9 @@
 package io.github.matheusgit11.localizacao.domain.repository;
 
 import io.github.matheusgit11.localizacao.domain.entity.Cidade;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -8,10 +11,13 @@ import java.util.List;
 
 public interface CidadeRepository extends JpaRepository<Cidade,Long> {
 
+    //ordenado
+    @Query(" select c from Cidade c where upper(c.nome) like upper(?1)")
+    List<Cidade> findByNomeLike(String nome, Sort sort);
 
-    @Query(" select c from Cidade c where upper(c.nome) like upper(?1)") // tratando casos de case sensitive
-    List<Cidade> findByNomeLike(String nome); //funciona se passarmos juntos de um % , sendo no inicio, final ou cercando o conteudo
-                                              // ou se passarmos apenas o conteudo
+    //paginado
+    @Query(" select c from Cidade c where upper(c.nome) like upper(?1)")
+    Page<Cidade> findByNomeLike(String nome, Pageable pageable);
 
     List<Cidade> findByNome(String nome);  //busca pelo nome
     List<Cidade> findByNomeStartingWith(String nome); //busca pelo nome comecando por aquele pedaco
