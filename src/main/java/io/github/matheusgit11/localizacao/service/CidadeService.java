@@ -2,7 +2,9 @@ package io.github.matheusgit11.localizacao.service;
 
 import io.github.matheusgit11.localizacao.domain.entity.Cidade;
 import io.github.matheusgit11.localizacao.domain.repository.CidadeRepository;
+import static io.github.matheusgit11.localizacao.domain.repository.specs.CidadeSpecs.*;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,6 +50,13 @@ public class CidadeService {
                 .withStringMatcher(ExampleMatcher.StringMatcher.STARTING);
         Example<Cidade> example = Example.of(cidade,matcher); // podemos passar apenas o objeto ou o matcher como segundo atributo
         return repository.findAll(example);
+    }
+
+    public void listarCidadesByNomeSpec(){
+        repository
+                .findAll(nomeEqual("Sao Paulo")
+                        .or(habitantesGreaterThan(1000)))
+                        .forEach(System.out::println);
     }
 
 
