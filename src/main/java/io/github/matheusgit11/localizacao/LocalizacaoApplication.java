@@ -21,9 +21,11 @@ public class LocalizacaoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       //service.testeQueryMethodsCidadesPorNome();
-       //service.testQueryMethodsCidadesPorHabitantes();
-       //service.testQueryMethodsCompostas();
-        service.testQueryMethodsSortAndPage();
+        // service.testeQueryMethodsCidadesPorNome();
+       // service.testQueryMethodsCidadesPorHabitantes();
+       // service.testQueryMethodsCompostas();
+       // service.testQueryMethodsSortAndPage();
+        var cidade = new Cidade(null,"porto",null);
+        service.filtroDinamico(cidade).forEach(System.out::println);
     }
 }

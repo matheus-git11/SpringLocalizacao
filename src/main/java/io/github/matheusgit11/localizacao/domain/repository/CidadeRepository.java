@@ -24,19 +24,19 @@ public interface CidadeRepository extends JpaRepository<Cidade,Long> {
 
     List<Cidade> findByNomeEndingWith(String nome); //busca pelo nome terminando por aquele pedaco
 
-    List<Cidade> findByNomeContaining(String nome); // busca pelo nome contendo  aquele pedacoo
+    List<Cidade> findByNomeContaining(String nome); // busca pelo nome contendo aquele pedaco
 
-    List<Cidade> findByHabitantes(Long habitantes);
+    List<Cidade> findByHabitantes(Long habitantes); // busca por habitantes iguais ao valor passado
 
-    List<Cidade> findByHabitantesLessThan(Long habitantes);
+    List<Cidade> findByHabitantesLessThan(Long habitantes); // busca por habitantes Menores que o valor passado
 
-    List<Cidade> findByHabitantesGreaterThan(Long habitantes);
+    List<Cidade> findByHabitantesGreaterThan(Long habitantes); // busca por habitantes Maiores que o valor passado
 
-    List<Cidade> findByHabitantesLessThanEqual(Long habitantes);
+    List<Cidade> findByHabitantesLessThanEqual(Long habitantes); // busca por habitantes Menores ou iguais que o valor passado
 
-    List<Cidade> findByHabitantesGreaterThanEqual(Long habitantes);
+    List<Cidade> findByHabitantesGreaterThanEqual(Long habitantes); // busca por habitantes Maiores ou iguais que o valor passado
 
-    List<Cidade> findByHabitantesLessThanAndNomeLike(Long habitantes , String nome);
+    List<Cidade> findByHabitantesLessThanAndNomeLike(Long habitantes , String nome); // Busca composta com habitantes e nome
 
 
 

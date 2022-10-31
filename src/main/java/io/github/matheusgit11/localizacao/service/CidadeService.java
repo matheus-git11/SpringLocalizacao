@@ -1,15 +1,16 @@
 package io.github.matheusgit11.localizacao.service;
 
+import io.github.matheusgit11.localizacao.domain.entity.Cidade;
 import io.github.matheusgit11.localizacao.domain.repository.CidadeRepository;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CidadeService {
 
-    private CidadeRepository repository;
+    private final CidadeRepository repository;
 
     public CidadeService(CidadeRepository repository){
         this.repository = repository;
@@ -39,4 +40,25 @@ public class CidadeService {
                 .findByHabitantesLessThanAndNomeLike(13940233L,"Re%")
                 .forEach(System.out::println);
     }
+
+    public List<Cidade> filtroDinamico(Cidade cidade){
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreCase()// podemos usar o matcher para personalizar o nosso example
+                .withStringMatcher(ExampleMatcher.StringMatcher.STARTING);
+        Example<Cidade> example = Example.of(cidade,matcher); // podemos passar apenas o objeto ou o matcher como segundo atributo
+        return repository.findAll(example);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
