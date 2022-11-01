@@ -6,6 +6,7 @@ import static io.github.matheusgit11.localizacao.domain.repository.specs.CidadeS
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -52,11 +53,31 @@ public class CidadeService {
         return repository.findAll(example);
     }
 
-    public void listarCidadesByNomeSpec(){
-        repository
+    public void listarCidadesByNomeSpec(){ // nao estamos a chamar o CidadesSpecs pois tornamos ele estatico !!!
+        repository          //utilizando specification
                 .findAll(nomeEqual("Sao Paulo")
-                        .or(habitantesGreaterThan(1000)))
+                        .or(habitantesGreaterThan(1000L)))
                         .forEach(System.out::println);
+    }
+
+    public void listarCidadesSpecsFiltroDinamico(Cidade filtro){
+            Specification<Cidade> specs = Specification
+                    .where(((root, query, criteriaBuilder) -> criteriaBuilder
+                            .conjunction()));
+
+            if(filtro.getId() != null){
+                specs = specs.and(idEqual(filtro.getId()));
+            }
+
+            if(StringUtils.hasText(filtro.getNome())){
+                specs=specs.and(nomeLike(filtro.getNome()));
+            }
+
+            if(filtro.getHabitantes()!=null){
+                specs=specs.and(habitantesGreaterThanOrEqualTo(filtro.getHabitantes()));
+            }
+
+            repository.findAll(specs).forEach(System.out::println);
     }
 
 
