@@ -27,7 +27,7 @@ public class LocalizacaoApplication implements CommandLineRunner {
        // service.testQueryMethodsSortAndPage();
        // var cidade = new Cidade(null,"porto",null); //service.filtroDinamico(cidade).forEach(System.out::println);
        // service.listarCidadesByNomeSpec();
-        var cidade = new Cidade(null,null,1L);
-        service.listarCidadesSpecsFiltroDinamico(cidade);
+       // var cidade = new Cidade(null,null,1L); service.listarCidadesSpecsFiltroDinamico(cidade);
+        service.listarCidadesPorNomeSql();
     }
 }

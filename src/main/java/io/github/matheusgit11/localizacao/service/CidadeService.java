@@ -80,6 +80,14 @@ public class CidadeService {
             repository.findAll(specs).forEach(System.out::println);
     }
 
+    public void listarCidadesPorNomeSql(){
+        repository.findByNomeSqlNativo("Sao Paulo").forEach(System.out::println);
+        repository.findByNomeSqlNativoOnlyName("Sao Paulo").forEach(System.out::println);
+
+        repository.findByNomeSqlNativoNameAndId("Sao Paulo")
+                .stream().map(cidadeProjection -> new Cidade(cidadeProjection.getId(),cidadeProjection.getNome(),null))
+                .forEach(System.out::println);
+    }
 
 
 
